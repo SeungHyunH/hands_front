@@ -1,28 +1,32 @@
-import React, { useCallback } from 'react'
-// import { useDispatch, useSelector } from "react-redux";
-// import { addUser } from "../../store/action/userAction.js"
+import React, { useCallback,useEffect } from 'react'
+import {useNavigate} from "react-router-dom"
+import {useSelector } from "react-redux";
 import { styled } from "styled-components";
 const Home = () => {
-  // const user = useSelector((store) => store.userReduer);
-  // useEffect(() => {
-  //   console.log(user);
-  // }, [user]);
-  const mvLoginRequester = useCallback(e => {
-    console.log("requester");
-  }, []);
-  const mvLoginHelper = useCallback(e => {
-    console.log("helper");
-  }, []);
+  const navigate = useNavigate();
+  const user = useSelector((store) => store.userReduer);
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+  const mvLogin = useCallback((e,type) => {
+    navigate(`login/${type}`);
+  }, [navigate]);
   return (
-    <Main className="container">
-      <Btn onClick={mvLoginRequester}>
-        <img src="assets/image/volunteer_activism_FILL0_wght200_GRAD200_opsz48.svg" width="40%" height="100%" alt="" />
-        <BtnText>도움이<br/>필요해요</BtnText>
-      </Btn>
-      <Btn onClick={mvLoginHelper}>
-        <img src="assets/image/handshake_FILL0_wght200_GRAD200_opsz48.svg" width="40%" height="100%" alt="" />
-        <BtnText>도움을<br/>줄래요</BtnText>
-      </Btn>
+    <Main>
+      {
+        user?
+        <div>
+            <Btn onClick={e => mvLogin(e, 1)}>
+              <img src="assets/image/volunteer_activism_FILL0_wght200_GRAD200_opsz48.svg" width="40%" height="100%" alt="" />
+              <BtnText>도움이<br/>필요해요</BtnText>
+            </Btn>
+            <Btn onClick={e=>mvLogin(e,1)}>
+              <img src="assets/image/handshake_FILL0_wght200_GRAD200_opsz48.svg" width="40%" height="100%" alt="" />
+              <BtnText>도움을<br/>줄래요</BtnText>
+            </Btn>
+        </div>
+        : <h1>로그인</h1>
+      }
     </Main>
   )
 }
@@ -57,7 +61,7 @@ const BtnText = styled.div`
 const Main = styled.div`
   width:100%;
   height:100%;
-  padding-top: 5rem;
+  padding-top: 3rem;
 
   position: absolute;
   top: 0;

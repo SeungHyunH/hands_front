@@ -3,7 +3,7 @@ const userReducer = (state = INITAL_STATE, action) => {
     case "ADD_USER":
       return action.payload;
     case "DELETE_USER":
-      return { ...action.payload };
+      return null;
     default:
       return state;
   }
@@ -11,6 +11,4 @@ const userReducer = (state = INITAL_STATE, action) => {
 
 export default userReducer;
 
-const INITAL_STATE = {
-  name: null,
-};
+const INITAL_STATE = null;
