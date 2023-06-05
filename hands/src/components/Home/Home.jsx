@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 // import { useDispatch, useSelector } from "react-redux";
 // import { addUser } from "../../store/action/userAction.js"
 import { styled } from "styled-components";
@@ -7,13 +7,19 @@ const Home = () => {
   // useEffect(() => {
   //   console.log(user);
   // }, [user]);
+  const mvLoginRequester = useCallback(e => {
+    console.log("requester");
+  }, []);
+  const mvLoginHelper = useCallback(e => {
+    console.log("helper");
+  }, []);
   return (
     <Main className="container">
-      <Btn>
+      <Btn onClick={mvLoginRequester}>
         <img src="assets/image/volunteer_activism_FILL0_wght200_GRAD200_opsz48.svg" width="40%" height="100%" alt="" />
         <BtnText>도움이<br/>필요해요</BtnText>
       </Btn>
-      <Btn>
+      <Btn onClick={mvLoginHelper}>
         <img src="assets/image/handshake_FILL0_wght200_GRAD200_opsz48.svg" width="40%" height="100%" alt="" />
         <BtnText>도움을<br/>줄래요</BtnText>
       </Btn>
@@ -26,6 +32,11 @@ const Btn = styled.button`
   padding: 2rem;
   display: flex;
   box-sizing: border-box;
+  border: 0;
+  background-color: rgb(232, 232, 232);
+  cursor: pointer;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
 `
 const BtnText = styled.div`
   width: 70%;
@@ -33,7 +44,14 @@ const BtnText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-weight: 900;
+  font-size: 3rem;
+  @media screen and (max-width: 1024px){
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 768px){
+    font-size: 1.5rem;
+  }
   white-space: nowrap;
 `
 const Main = styled.div`
