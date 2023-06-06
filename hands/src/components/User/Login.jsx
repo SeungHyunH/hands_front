@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { styled } from "styled-components";
+import { addUser } from "../../store/action/userAction";
+import { useDispatch } from "react-redux";
 const Login = () => {
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
+  const dispach = useDispatch();
+  const regExp =
+    "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i";
+  const login = useCallback(() => {
+    if (userId === "") {
+      alert("아이디를 입력해주세요");
+      return;
+    }
+    if (!userId.match(regExp)) {
+      alert("아이디를 이메일형식으로 입력해주세요");
+      return;
+    }
+    console.log(userId, password);
+    dispach(
+      addUser({
+        name: "한승현",
+        accessToken: "asdfasdf",
+        refreshToken: "asdfasdf",
+      })
+    );
+  }, [userId, password, dispach, regExp]);
+
   return (
     <LoginWrap>
       <table>
@@ -12,13 +38,17 @@ const Login = () => {
           <tr>
             <td>아이디</td>
             <td>
-              <Input />
+              <Input value={userId} onChange={(e) => setUserId(e.target.value)} />
             </td>
           </tr>
           <tr>
             <td>비밀번호</td>
             <td>
-              <Input type="password" />
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </td>
           </tr>
           <tr>
@@ -38,7 +68,7 @@ const Login = () => {
           </tr>
           <tr>
             <td colSpan="2">
-              <LoginBtn>로그인</LoginBtn>
+              <LoginBtn onClick={login}>로그인</LoginBtn>
             </td>
           </tr>
         </tbody>
