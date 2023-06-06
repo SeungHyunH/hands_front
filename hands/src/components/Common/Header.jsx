@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from "react";
 import { styled, keyframes, css } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { deleteUser } from "../../store/action/userAction";
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
   const user = useSelector((store) => store.userReduer);
   const navigate = useNavigate();
+  const dispach = useDispatch();
   const toggleMenu = useCallback(
     (e) => {
       setIsMenu(!isMenu);
@@ -17,6 +18,10 @@ const Header = () => {
     navigate(`/`);
     toggleMenu();
   };
+  const logout = useCallback(() => {
+    dispach(deleteUser());
+    toggleMenu();
+  }, [dispach, toggleMenu]);
 
   return (
     <HeaderWrap>
@@ -36,11 +41,8 @@ const Header = () => {
           <MenuItem onClick={mvHome}>🏠홈화면</MenuItem>
           {user ? (
             <div>
-              <MenuItem>
-                <img src="assets/image/account_circle_FILL1_wght700_GRAD0_opsz48.svg" alt="" />
-                프로필
-              </MenuItem>
-              <MenuItem>로그아웃</MenuItem>
+              <MenuItem>😐프로필</MenuItem>
+              <MenuItem onClick={logout}>📲로그아웃</MenuItem>
               <MenuItem>❌회원탈퇴</MenuItem>
             </div>
           ) : null}
