@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { styled } from "styled-components";
@@ -12,10 +12,13 @@ const Home = () => {
     },
     [navigate]
   );
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <Main>
       {user ? (
-        <div>
+        <HomeWrap>
           <Btn onClick={(e) => mvLogin(e, 1)}>
             <img
               src="assets/image/volunteer_activism_FILL0_wght200_GRAD200_opsz48.svg"
@@ -42,7 +45,7 @@ const Home = () => {
               줄래요
             </BtnText>
           </Btn>
-        </div>
+        </HomeWrap>
       ) : (
         <User></User>
       )}
@@ -52,11 +55,13 @@ const Home = () => {
 const Btn = styled.button`
   width: 80%;
   height: 20%;
+  margin-left: 10%;
+  margin-top: 5rem;
   padding: 2rem;
   display: flex;
   box-sizing: border-box;
   border: 0;
-  background-color: rgb(232, 232, 232);
+  background-color: rgb(169, 226, 255);
   cursor: pointer;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
   border-radius: 0.5rem;
@@ -108,5 +113,8 @@ const Main = styled.div`
   flex-direction: column;
   gap: 5rem;
 `;
-
+const HomeWrap = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 export default Home;
