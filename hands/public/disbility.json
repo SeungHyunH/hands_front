@@ -1,0 +1,77 @@
+[
+  {
+    "id" : 1,
+    "type": "해당없음",
+    "caution": ""
+  },
+  {
+    "id" : 2,
+    "type": "지체",
+    "caution": ""
+  },
+  {
+    "id" : 3,
+    "type": "뇌병변",
+    "caution": ""
+  },
+  {
+    "id" : 4,
+    "type": "시각",
+    "caution": ""
+  },
+  {
+    "id" : 5,
+    "type": "청각",
+    "caution": ""
+  },
+  {
+    "id" : 6,
+    "type": "언어",
+    "caution": ""
+  },
+  {
+    "id" : 7,
+    "type": "안면",
+    "caution": ""
+  },
+  {
+    "id" : 8,
+    "type": "신장",
+    "caution": ""
+  },
+  {
+    "id" : 9,
+    "type": "간",
+    "caution": ""
+  },
+  {
+    "id" : 10,
+    "type": "호흡기",
+    "caution": ""
+  },
+  {
+    "id" : 11,
+    "type": "장루",
+    "caution": ""
+  },
+  {
+    "id" : 12,
+    "type": "뇌전증",
+    "caution": ""
+  },
+  {
+    "id" : 13,
+    "type": "지적",
+    "caution": ""
+  },
+  {
+    "id" : 14,
+    "type": "자폐성",
+    "caution": ""
+  },
+  {
+    "id" : 15,
+    "type": "정신",
+    "caution": ""
+  }
+]
