@@ -1,78 +1,125 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import styled from "styled-components";
 const Join = (props) => {
   const [disabilityList, setDisabilityList] = useState([]);
   const [checkedDisabilityList, setCheckedDisabilityList] = useState([]);
+  const [isDisability, setIsDisability] = useState(false);
+  const disabilityOptionList = useMemo(() => {
+    const res = [];
+    disabilityList.forEach((e, idx) =>
+      res.push(
+        <DisbilityOption
+          className="pointer"
+          selected={checkedDisabilityList[idx]}
+          key={idx}
+          onClick={() => {
+            if (idx === 0) {
+              const temp = new Array(checkedDisabilityList.length);
+              temp[0] = true;
+              setCheckedDisabilityList(temp);
+              return;
+            }
+            const temp = [...checkedDisabilityList];
+            const cnt = temp.filter((e) => e).length;
+            if (temp[idx] && cnt === 1) temp[0] = true;
+            else if (temp[0] && cnt === 1) temp[0] = false;
+            temp[idx] = !temp[idx];
+            setCheckedDisabilityList(temp);
+          }}
+        >
+          {e.type}
+        </DisbilityOption>
+      )
+    );
+    return res;
+  }, [disabilityList, checkedDisabilityList]);
   useEffect(() => {
     axios({
       method: "get",
       url: "disbility.json",
     }).then(({ data }) => {
       setDisabilityList(data);
-      setCheckedDisabilityList(new Array(data.length).fill(false));
+      const temp = new Array(data.length).fill(false);
+      temp[0] = true;
+      setCheckedDisabilityList(temp);
     });
   }, []);
   return (
     <JoinWrap>
-      <table>
-        <colgroup>
-          <col width="25%"></col>
-          <col width="75%"></col>
-        </colgroup>
-        <tbody>
-          <tr>
-            <td>이름</td>
-            <td>
-              <Input />
-            </td>
-          </tr>
-          <tr>
-            <td>아이디</td>
-            <td>
-              <Input placeholder="abc@abc.com" />
-            </td>
-          </tr>
-          <tr>
-            <td>비밀번호</td>
-            <td>
-              <Input type="password" />
-            </td>
-          </tr>
-          <tr>
-            <td>비밀번호확인</td>
-            <td>
-              <Input type="password" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div>장애유형</div>
-              <div>
-                <AddDisabilityBtn>추가</AddDisabilityBtn>
-              </div>
-            </td>
-            <DisabilityWrap>
-              {disabilityList.map((e) => (
-                <div key={e.type}>{e.type}</div>
-              ))}
-            </DisabilityWrap>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              아이디 찾기 | 비밀번호 찾기 |
-              <span className="pointer" onClick={() => props.setMode("login")}>
-                로그인
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <JoinBtn>회원가입</JoinBtn>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      {isDisability ? (
+        <DisabilityOPtionWrap>
+          {disabilityOptionList}
+          <JoinBtn onClick={() => setIsDisability(false)}>설정완료</JoinBtn>
+        </DisabilityOPtionWrap>
+      ) : (
+        <table>
+          <colgroup>
+            <col width="25%"></col>
+            <col width="75%"></col>
+          </colgroup>
+          <tbody>
+            <tr>
+              <td>이름</td>
+              <td>
+                <Input />
+              </td>
+            </tr>
+            <tr>
+              <td>아이디</td>
+              <td>
+                <Input placeholder="abc@abc.com" />
+              </td>
+            </tr>
+            <tr>
+              <td>비밀번호</td>
+              <td>
+                <Input type="password" />
+              </td>
+            </tr>
+            <tr>
+              <td>비밀번호확인</td>
+              <td>
+                <Input type="password" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div>장애유형</div>
+                <div>
+                  <AddDisabilityBtn
+                    onClick={() => {
+                      setIsDisability(true);
+                    }}
+                  >
+                    추가
+                  </AddDisabilityBtn>
+                </div>
+              </td>
+              <DisabilityWrap>
+                {disabilityList
+                  .filter((e, idx) => checkedDisabilityList[idx])
+                  .map((e) => (
+                    <Disability key={e.type}>{e.type}</Disability>
+                  ))}
+              </DisabilityWrap>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                아이디 찾기 | 비밀번호 찾기 |
+                <span className="pointer" onClick={() => props.setMode("login")}>
+                  로그인
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <JoinBtn>회원가입</JoinBtn>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
     </JoinWrap>
   );
 };
@@ -117,6 +164,7 @@ const Input = styled.input`
 const JoinBtn = styled.button`
   width: 100%;
   height: 2rem;
+  margin-top: 1rem;
   border-radius: 1rem;
   box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.5);
   border: 0;
@@ -148,5 +196,26 @@ const DisabilityWrap = styled.td`
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+`;
+const DisabilityOPtionWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+const DisbilityOption = styled.div`
+  margin: 0.5rem 5%;
+  width: 40%;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  border-radius: 1rem;
+  font-weight: 900;
+  font-size: 1.5rem;
+  box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.5);
+  background-color: ${(props) => (props.selected ? "rgb(0, 255, 166)" : "#ff7676")};
+`;
+const Disability = styled.div`
+  box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  padding: 0 1rem;
 `;
 export default Join;
