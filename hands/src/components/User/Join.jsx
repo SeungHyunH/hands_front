@@ -106,7 +106,11 @@ const Join = (props) => {
             </tr>
             <tr>
               <td colSpan="2">
-                아이디 찾기 | 비밀번호 찾기 |
+                아이디 찾기 |
+                <span className="pointer" onClick={() => props.setMode("findPassword")}>
+                  비밀번호 찾기
+                </span>
+                |
                 <span className="pointer" onClick={() => props.setMode("login")}>
                   로그인
                 </span>
