@@ -1,12 +1,13 @@
 import React, { useState, useCallback } from "react";
 import { styled, keyframes, css } from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteUser } from "../../store/action/userAction";
 const Header = () => {
   const [isMenu, setIsMenu] = useState(false);
   const user = useSelector((store) => store.userReduer);
   const navigate = useNavigate();
+  const location = useLocation();
   const dispach = useDispatch();
   const toggleMenu = useCallback(
     (e) => {
@@ -15,8 +16,9 @@ const Header = () => {
     [isMenu]
   );
   const mvHome = () => {
+    if (location.pathname === "/") window.location.reload();
     navigate(`/`);
-    toggleMenu();
+    if (isMenu) toggleMenu();
   };
   const logout = useCallback(() => {
     dispach(deleteUser());
@@ -30,6 +32,7 @@ const Header = () => {
         Hands
       </Logo>
       <img
+        className="pointer"
         src="assets/image/menu_FILL0_wght700_GRAD0_opsz48.svg"
         height="100%"
         alt=""
@@ -65,6 +68,7 @@ const HeaderWrap = styled.header`
 const Logo = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 // animations
