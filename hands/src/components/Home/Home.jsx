@@ -8,7 +8,11 @@ const Home = () => {
   const user = useSelector((store) => store.userReduer);
   const mvLogin = useCallback(
     (e, type) => {
-      navigate(`login/${type}`);
+      if (type === 1) {
+        navigate(`request/list`);
+      } else if (type === 2) {
+        navigate(`response/list`);
+      }
     },
     [navigate]
   );
