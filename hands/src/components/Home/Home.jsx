@@ -32,7 +32,7 @@ const Home = () => {
               필요해요
             </BtnText>
           </Btn>
-          <Btn onClick={(e) => mvLogin(e, 1)}>
+          <Btn onClick={(e) => mvLogin(e, 2)}>
             <img
               src="assets/image/handshake_FILL0_wght200_GRAD200_opsz48.svg"
               width="40%"

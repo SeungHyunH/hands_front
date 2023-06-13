@@ -6,18 +6,21 @@ const Login = (props) => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const dispach = useDispatch();
-  const regExp =
-    "/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i";
   const login = useCallback(() => {
+    const emailExp =
+      /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
     if (userId === "") {
       alert("아이디를 입력해주세요");
       return;
     }
-    if (!userId.match(regExp)) {
+    if (!emailExp.test(userId)) {
       alert("아이디를 이메일형식으로 입력해주세요");
       return;
     }
-    console.log(userId, password);
+    if (password === "") {
+      alert("비밀번호를 입력해주세요");
+      return;
+    }
     dispach(
       addUser({
         name: "한승현",
@@ -25,7 +28,7 @@ const Login = (props) => {
         refreshToken: "asdfasdf",
       })
     );
-  }, [userId, password, dispach, regExp]);
+  }, [userId, password, dispach]);
 
   return (
     <LoginWrap>
