@@ -28,12 +28,12 @@ const Header = () => {
   return (
     <HeaderWrap>
       <Logo onClick={mvHome}>
-        <img src="assets/image/handshake_FILL0_wght200_GRAD200_opsz48.svg" height="100%" alt="" />
+        <img src="/assets/image/handshake_FILL0_wght200_GRAD200_opsz48.svg" height="100%" alt="" />
         Hands
       </Logo>
       <img
         className="pointer"
-        src="assets/image/menu_FILL0_wght700_GRAD0_opsz48.svg"
+        src="/assets/image/menu_FILL0_wght700_GRAD0_opsz48.svg"
         height="100%"
         alt=""
         onClick={toggleMenu}
