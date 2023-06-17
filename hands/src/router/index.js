@@ -4,7 +4,7 @@ import Home from "../components/Home/Home.jsx";
 import RequestList from "../components/Request/RequestList.jsx";
 
 //도움주기
-import ResponseList from "../components/Response/ResponseList.jsx";
+import ResponseUserList from "../components/Response/ResponseUserList.jsx";
 const routes = [
   {
     path: "/",
@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: "/response/list",
-    compoonent: ResponseList,
+    compoonent: ResponseUserList,
   },
 ];
 export default routes;
