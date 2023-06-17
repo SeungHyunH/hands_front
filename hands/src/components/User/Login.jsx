@@ -1,11 +1,19 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { styled } from "styled-components";
 import { addUser } from "../../store/action/userAction";
 import { useDispatch } from "react-redux";
 const Login = (props) => {
   const [userId, setUserId] = useState("");
+  const [saveId, setSaveId] = useState(false);
   const [password, setPassword] = useState("");
   const dispach = useDispatch();
+  useEffect(() => {
+    if (localStorage.getItem("handsId")) {
+      setSaveId(true);
+      setUserId(localStorage.getItem("handsId"));
+    }
+  }, []);
+
   const login = useCallback(() => {
     const emailExp =
       /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
@@ -21,6 +29,11 @@ const Login = (props) => {
       alert("비밀번호를 입력해주세요");
       return;
     }
+    if (saveId) {
+      localStorage.setItem("handsId", userId);
+    } else {
+      localStorage.setItem("handsId", null);
+    }
     dispach(
       addUser({
         name: "한승현",
@@ -28,7 +41,7 @@ const Login = (props) => {
         refreshToken: "asdfasdf",
       })
     );
-  }, [userId, password, dispach]);
+  }, [userId, password, dispach, saveId]);
 
   return (
     <LoginWrap>
@@ -58,7 +71,12 @@ const Login = (props) => {
             <td colSpan="2">
               <label htmlFor="saveId">
                 아이디저장
-                <input type="checkbox" id="saveId" />
+                <input
+                  type="checkbox"
+                  id="saveId"
+                  checked={saveId}
+                  onChange={(e) => setSaveId(e)}
+                />
               </label>
               <label htmlFor="autoLogin">
                 자동로그인
