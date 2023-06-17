@@ -1,0 +1,23 @@
+{
+	"code": 200,
+	"data":[
+		{
+			"helpId": 1,
+			"context" : "전동보장구 배터리가 없어요",
+			"latitude" : 38.123,
+			"longitude" : 128.123,
+			"createdAt": "yyyy-MM-dd",
+			"requestUserId" : 1,
+			"requestUserName" : "한승현"
+		},
+		{
+			"helpId": 1,
+			"context" : "전동보장구 배터리가 없어요",
+			"latitude" : 38.123,
+			"longitude" : 128.123,
+			"createdAt": "yyyy-MM-dd",
+			"requestUserId" : 1,
+			"requestUserName" : "한승현"
+		}
+	]
+}
