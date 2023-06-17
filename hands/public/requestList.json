@@ -1,23 +1,112 @@
 {
-	"code": 200,
-	"data":[
-		{
-			"helpId": 1,
-			"context" : "전동보장구 배터리가 없어요",
-			"latitude" : 38.123,
-			"longitude" : 128.123,
-			"createdAt": "yyyy-MM-dd",
-			"requestUserId" : 1,
-			"requestUserName" : "한승현"
-		},
-		{
-			"helpId": 1,
-			"context" : "전동보장구 배터리가 없어요",
-			"latitude" : 38.123,
-			"longitude" : 128.123,
-			"createdAt": "yyyy-MM-dd",
-			"requestUserId" : 1,
-			"requestUserName" : "한승현"
-		}
-	]
+  "code": 200,
+  "data": [
+    {
+      "helpId": 1,
+      "context": "전동보장구 배터리가 없어요",
+      "disability": [
+        {
+          "id": 2,
+          "type": "지체",
+          "caution": ""
+        },
+        {
+          "id": 3,
+          "type": "뇌병변",
+          "caution": ""
+        },
+        {
+          "id": 4,
+          "type": "시각",
+          "caution": ""
+        },
+        {
+          "id": 5,
+          "type": "청각",
+          "caution": ""
+        },
+        {
+          "id": 6,
+          "type": "언어",
+          "caution": ""
+        },
+        {
+          "id": 7,
+          "type": "안면",
+          "caution": ""
+        },
+        {
+          "id": 8,
+          "type": "신장",
+          "caution": ""
+        },
+        {
+          "id": 9,
+          "type": "간",
+          "caution": ""
+        },
+        {
+          "id": 10,
+          "type": "호흡기",
+          "caution": ""
+        },
+        {
+          "id": 11,
+          "type": "장루",
+          "caution": ""
+        },
+        {
+          "id": 12,
+          "type": "뇌전증",
+          "caution": ""
+        },
+        {
+          "id": 13,
+          "type": "지적",
+          "caution": ""
+        },
+        {
+          "id": 14,
+          "type": "자폐성",
+          "caution": ""
+        },
+        {
+          "id": 15,
+          "type": "정신",
+          "caution": ""
+        }
+      ],
+      "latitude": 38.123,
+      "longitude": 128.123,
+      "createdAt": "2023-06-17",
+      "requestUserId": 1,
+      "requestUserName": "한승현"
+    },
+    {
+      "helpId": 1,
+      "context": "전동보장구 배터리가 없어요",
+      "disability": [
+        {
+          "id": 2,
+          "type": "지체",
+          "caution": ""
+        },
+        {
+          "id": 3,
+          "type": "뇌병변",
+          "caution": ""
+        },
+        {
+          "id": 4,
+          "type": "시각",
+          "caution": ""
+        }
+      ],
+      "latitude": 38.123,
+      "longitude": 128.123,
+      "createdAt": "2023-06-17",
+      "requestUserId": 1,
+      "requestUserName": "한승현"
+    }
+  ]
 }
