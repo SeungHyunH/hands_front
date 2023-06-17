@@ -37,7 +37,7 @@ const Join = (props) => {
   useEffect(() => {
     axios({
       method: "get",
-      url: "disbility.json",
+      url: "/disbility.json",
     }).then(({ data }) => {
       setDisabilityList(data);
       const temp = new Array(data.length).fill(false);
