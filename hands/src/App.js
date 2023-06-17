@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import routes from "./router";
 import "./App.css";
 import Header from "./components/Common/Header";
+import { styled } from "styled-components";
 function App() {
   return (
     <div className="App">
@@ -13,10 +14,10 @@ function App() {
                 key={e.path}
                 path={e.path}
                 element={
-                  <div>
+                  <AppWrap>
                     <Header></Header>
                     <e.compoonent />
-                  </div>
+                  </AppWrap>
                 }
               />
             );
@@ -27,5 +28,8 @@ function App() {
     </div>
   );
 }
-
+const AppWrap = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 export default App;
