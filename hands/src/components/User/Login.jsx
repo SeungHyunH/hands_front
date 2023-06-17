@@ -78,10 +78,6 @@ const Login = (props) => {
                   onChange={(e) => setSaveId(e)}
                 />
               </label>
-              <label htmlFor="autoLogin">
-                자동로그인
-                <input type="checkbox" id="autoLogin" />
-              </label>
             </td>
           </tr>
           <tr>
