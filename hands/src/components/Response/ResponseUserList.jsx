@@ -1,8 +1,10 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { styled } from "styled-components";
 
 const ResponseUserList = () => {
+  const navigate = useNavigate();
   const [requestList, setRequestList] = useState([]);
   useEffect(() => {
     axios({
@@ -21,12 +23,15 @@ const ResponseUserList = () => {
     }
     return res;
   };
+  const mvDetail = (data) => {
+    navigate(`/response/detail/${data.helpId}`);
+  }
   return (
     <ResponseUserListWrap>
       <Title>현재 필요한 도움</Title>
       <RequestListWrap>
         {requestList.map((e, idx) => (
-          <RequestListItem key={idx}>
+          <RequestListItem key={idx} onClick={()=>mvDetail(e)}>
             <div>{e.context}</div>
             <DisabilityWrap>{getDisability(e.disability)}</DisabilityWrap>
             <Time>{e.createdAt}</Time>
